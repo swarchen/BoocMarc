@@ -29,7 +29,7 @@
 			name : "被討厭的勇氣：自我啟發之父「阿德勒」的教導",
 			author :  "岸見一郎, 古賀史健",
 			comments : {
-				count:99
+				count:4
 			},
 			category : "經典學派/大師思想",
 			publisher : "究竟",
