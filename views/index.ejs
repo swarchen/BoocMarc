@@ -30,18 +30,40 @@
 	    </div>
 	  </div>
 	</nav>
-
-	<div class="row trendbook" ng-controller="ContentCtrl as content" >
-	  <div class="col-sm-6 col-md-4" ng-repeat="book in content.books | orderBy : '-comments.count'">
-	    <div class="thumbnail">
-	      <img src="{{book.imgUrl}}" >
-	      <div class="caption">
-	        <h3>{{book.name}}</h3>
-	        <p>作者：{{book.author}}</p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	<div class="Container">
+        <div class="Left">
+        	<div class="row trendbook" ng-controller="TrendBookCtrl as trendbook" >
+			  <div class="col-sm-12 col-md-12" ng-repeat="book in trendbook.books | orderBy : '-comments.count'">
+			    <div class="booklist">
+			    	<div class="book-image">
+			    		 <img src="{{book.imgUrl}}">
+			    	</div>
+				    <div class="book-info">
+				    	<h4>{{book.name}}</h4>
+				        <p>作者：{{book.author}}</p>
+				    </div>
+			    </div>
+			  </div>
+			</div>
+        </div>
+        
+        <div class="Right">
+			<div class="row trendbook" ng-controller="DisscussBookCtrl as discussbook" >
+			  <div class="col-sm-12 col-md-12" ng-repeat="book in discussbook.books | orderBy : 'comments.count'">
+			    <div class="booklist">
+			      <div class="book-image">
+			    		 <img src="{{book.imgUrl}}">
+			    	</div>
+				    <div class="book-info">
+				    	<h4>{{book.name}}</h4>
+				        <p>作者：{{book.author}}</p>
+				    </div>
+			    </div>
+			  </div>
+			</div>
+        </div>
+    </div>
+	
 
 
 
