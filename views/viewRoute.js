@@ -2,8 +2,7 @@ var app = angular.module('BoocMarc',['ngRoute']);
 
 app.config(function($routeProvider){
 	$routeProvider.when('/', {
-		controller:'contentCtrl',
-		templateUrl: 'index.ejs'
+		templateUrl: '../views/home.html'
 	})
 	.otherwise({
 		redirectTo: '/'

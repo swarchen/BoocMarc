@@ -74,3 +74,27 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	}
 
 }
+
+.book-detail{
+	height: 100%;
+    left: 0px;
+    position: absolute;
+    border-right:solid #E8E8E8 1px;
+
+}
+
+.nav-own{
+	background-color: #161d20;
+}
+
+.navtop{
+	border-width:0px;
+}
+
+html,body,.book-container,.book-detail,.content-view,.book-row,.side-info{
+	height: 100%
+}
+
+.discussions{
+	padding-top: 50px;
+}
