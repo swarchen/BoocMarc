@@ -10,22 +10,22 @@
 			        <p>{{Book.book.author}}</p>
 			        <p>{{Book.book.publisher}}</p>
 			        <p>{{Book.book.category}}</p>
-			    	<input type="number" ng-model="paging">
+			    	<input type="number" ng-model="paging" placeholder="看到第幾頁了呢？">
 			    </div>
 			 </div>
 		</div>
 		<div class="col-md-8" >
 			<div class="list-group discussions" >
-			  <a href="#" class="list-group-item" ng-repeat="discuss in Book.discussions" ng-if="discuss.page.at < 35">
-			  	<span class="glyphicon glyphicon-thumbs-up"> </span>
-			  	<span class="glyphicon glyphicon-thumbs-down">  </span>
-			  	<h5 style="display:inline-block;">{{discuss.title}}</h5>
-			  	<span class="comments pull-right">
+			  <button class="list-group-item animate-show" ng-repeat="discuss in Book.discussions" ng-show="discuss.page.at < paging" ng-click="alert()">
+			  	<h4 style="display:inline-block;">{{discuss.title}}</h5>
+			  	<span class="discussion-author"> {{discuss.author}}</span>
+			  	<p>{{discuss.explanation}}</p>
+			  	<span class="comments pull-left">
+			  		<span class="glyphicon glyphicon-thumbs-up">{{discuss.likes.count}}</span>
+			  	<span class="glyphicon glyphicon-thumbs-down">{{discuss.dislikes.count}}</span>
 			  		<span class="glyphicon glyphicon-comment"></span> {{discuss.comments.count}}
 			  	</span>
-
-			  </a>
-
+			  </button>
 			</div>
 		</div>
 	</div>	

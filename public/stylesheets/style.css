@@ -1,6 +1,7 @@
 body {
-  padding-top: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: 'OpenSans',Arial,sans-serif;
   overflow-x: hidden;
 
 }
@@ -95,6 +96,86 @@ html,body,.book-container,.book-detail,.content-view,.book-row,.side-info{
 	height: 100%
 }
 
-.discussions{
-	padding-top: 50px;
+
+
+.discussion-author{
+	color:gray;
+	font-size: 10px;
+}
+
+.foot{
+	margin:0px;
+}
+
+.footer-container{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.footer-content{
+	border-top: solid 1px rgba(128, 128, 128, 0.3);
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.small-logo img{
+	width: 100px;
+}
+
+.brand-logo{
+	width:150px;
+	padding: 10px 0;
+}
+
+.caption-text{
+	font-size: 12px;
+    line-height: 18px;
+    font-family: 'OpenSans',Arial,sans-serif;
+}
+
+.container-fluid{
+	width:75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.brand{
+	padding:10px 15px;
+}
+
+.btn-blue{
+	background-color: #4a90e2;
+	line-height: 16px;
+    padding: 16px 20px;
+    margin-left: 14px;
+    margin-right: 14px;
+    margin-top: 6px;
+    display: inline-block;
+    border-radius: 0;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-blue:hover{
+	background-color:#75B4FF;
+	color:white;
+	text-decoration: none;
+}
+
+.btn-none{
+	padding: 22px 0px;
+	color:#757575;
+	text-decoration: none;
+}
+
+.btn-none:hover{
+	padding: 22px 0px;
+	color:#4a90e2;
+	text-decoration: none;
+}
+
+.container-fluid ul li{
+	display:inline;
 }

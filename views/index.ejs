@@ -21,21 +21,40 @@
 </head>
 <body ng-app = "boocmarc">
 
-	<nav class="navbar navbar-default navbar-fixed-top navtop">
-	  <div class="container-fluid nav-own">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
 	    <div class="navbar-header">
-	 	<form class="navbar-form navbar-left" role="search">
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
-	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
-	      </form>
+	      <a class="brand" href="#">
+	        <img alt="Brand" class="brand-logo" src="/imgs/logo.png">
+	      </a>
 	    </div>
+	    <div class="navbar-right">
+	    	<ul>
+	    		<li>
+	    			<a class="btn-none" href="/login">登入</a>
+	    		</li>
+	    		<li>
+	    			<a class="btn-blue" href="/register">註冊</a>
+	    		</li>
+	    	</ul>
+	    </div>
+	    
 	  </div>
 	</nav>
+
 	<div ng-view class="content-view"></div>
 	
-
+	<div class="panel-default foot">
+	  <div class="footer-container">
+		<div class="row footer-content">
+			<div class="col-md-6 col-lg-12">
+				<p><a href="/" class="small-logo"><span><img src="/imgs/logo.png" alt=""></span></a></p>	
+				<p>BoocMarc 致力提供一個全新的閱讀體驗給所有的閱讀愛好者。</p>
+				<p class="caption-text"><span>© 2016 BoocMarc Inc. All rights reserved.</span></p>
+			</div>
+		</div>
+	  </div>
+	</div>
 
 
 	<!-- Latest compiled and minified JavaScript -->

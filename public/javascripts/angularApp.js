@@ -10,11 +10,7 @@
 	app.controller('BookCtrl', ['$scope','$routeParams', function($scope,$routeParams){
 		this.book = book;
 		this.discussions = discussions;
-		$scope.beforeThan = function(prop, val){
-		    return function(item){
-		      return item[prop] < val;
-		    }
-		}
+		this.comments = comments;
 	}]);
 
 	app.config(function($routeProvider){
@@ -32,18 +28,55 @@
 
 
 	//test data
+	var comments = [
+		{
+			book:"蝙蝠(奈斯博作品集10)",
+			author:"andy",
+			comment:"good",
+			likes:{
+				count:0
+			},
+			dislikes:{
+				count:0
+			}
+		},
+		{
+			book:"蝙蝠(奈斯博作品集10)",
+			author:"andy",
+			comment:"good",
+			likes:{
+				count:0
+			},
+			dislikes:{
+				count:0
+			}
+		},
+		{
+			book:"蝙蝠(奈斯博作品集10)",
+			author:"andy",
+			comment:"good",
+			likes:{
+				count:0
+			},
+			dislikes:{
+				count:0
+			}
+		}
+	]
+
 	var discussions = [
 		{
 			book:"蝙蝠(奈斯博作品集10)",
 			author:"Jhaocheng wu",
 			title:"我覺得第一段的故事有點難懂耶",
+			explanation:"不知道為什麼主角會因為這樣死掉，很不合理大家不覺得嗎？",
 			comments:{
 				count:6
 			},
 			likes:{
 				count:2
 			},
-			dislike:{
+			dislikes:{
 				count:0
 			},
 			page:{
@@ -53,13 +86,14 @@
 			book:"蝙蝠(奈斯博作品集10)",
 			author:"Alex",
 			title:"想和大家聊聊第二章的內容",
+			explanation:"大家是不是跟我一樣看到ＸＸ就想到ＸＸＸ，我覺得作者經營得好好歐",
 			comments:{
 				count:6
 			},
 			likes:{
 				count:8
 			},
-			dislike:{
+			dislikes:{
 				count:0
 			},
 			page:{
@@ -69,13 +103,14 @@
 			book:"蝙蝠(奈斯博作品集10)",
 			author:"Mendy",
 			title:"看完四分之一大概有點了解作者想表達什麼",
+			explanation:"感覺這本書看四份之一大概就可以了，之後寫的幾乎都是重複再講前面提過的觀念，好像沒什麼意義",
 			comments:{
 				count:32
 			},
 			likes:{
 				count:53
 			},
-			dislike:{
+			dislikes:{
 				count:0
 			},
 			page:{
