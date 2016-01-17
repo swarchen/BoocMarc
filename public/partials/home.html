@@ -29,7 +29,7 @@
 			<div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="book in featured">
 				<a href="/book/{{book._id}}">
 					<div class="book-image">
-						<img src="{{book.imgUrl}}">
+						<img ng-src="{{book.imgUrl}}">
 					</div>
 					<div class="book-detail">
 						<div class="book-title">{{book.title}}</div>
@@ -45,7 +45,7 @@
 			<div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="book in discussed">
 				<a href="/book/{{book._id}}">
 					<div class="book-image">
-						<img src="{{book.imgUrl}}">
+						<img ng-src="{{book.imgUrl}}">
 					</div>
 					<div class="book-detail">
 						<div class="book-title">{{book.title}}</div>
