@@ -21,33 +21,41 @@
 </head>
 <body ng-app = "boocmarc">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
-	        <img alt="Brand" src="http://i.imgur.com/3MZLsTZ.png">
+	      <a class="brand" href="#">
+	        <img alt="Brand" class="brand-logo" src="/imgs/logo.png">
 	      </a>
 	    </div>
+	    <div class="navbar-right">
+	    	<ul>
+	    		<li><a class="btn-none" href="/login">登入</a></li>
+	    		<li><a class="btn-blue" href="/register">註冊</a></li>
+	    	</ul>
+	    </div>    
 	  </div>
 	</nav>
 
-	<div class="row trendbook" ng-controller="ContentCtrl as content" >
-	  <div class="col-sm-6 col-md-4" ng-repeat="book in content.books | orderBy : '-comments.count'">
-	    <div class="thumbnail">
-	      <img src="{{book.imgUrl}}" >
-	      <div class="caption">
-	        <h3>{{book.name}}</h3>
-	        <p>作者：{{book.author}}</p>
-	      </div>
-	    </div>
+	<div ng-view class="content-view"></div>
+	
+	<div class="panel-default foot">
+	  <div class="footer-container">
+		<div class="row footer-content">
+			<div class="col-md-6 col-lg-12">
+				<p><a href="/" class="small-logo"><span><img src="/imgs/logo.png" alt=""></span></a></p>	
+				<p>BoocMarc 致力提供一個全新的閱讀體驗給所有的閱讀愛好者。</p>
+				<p class="caption-text"><span>© 2016 BoocMarc Inc. All rights reserved.</span></p>
+			</div>
+		</div>
 	  </div>
 	</div>
-
 
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="javascripts/angularApp.js"></script>
+	
 </body>
 </html>
 

@@ -1,0 +1,32 @@
+<div class="book-container" ng-controller="BookCtrl as Book">
+	<div class="row book-row">
+		<div class="col-md-3 col-lg-3 side-info" >
+			<div class="col-xs-12 col-md-12 book-detail">
+			    <a href="#" class="thumbnail">
+			      <img src="{{Book.book.imgUrl}}" >
+			    </a>
+			    <div class="caption">
+			        <h3>{{Book.book.name}}</h3>
+			        <p>{{Book.book.author}}</p>
+			        <p>{{Book.book.publisher}}</p>
+			        <p>{{Book.book.category}}</p>
+			    	<input type="number" ng-model="paging" placeholder="看到第幾頁了呢？">
+			    </div>
+			 </div>
+		</div>
+		<div class="col-md-8" >
+			<div class="list-group discussions" >
+			  <button class="list-group-item animate-show" ng-repeat="discuss in Book.discussions" ng-show="discuss.page.at < paging" ng-click="alert()">
+			  	<h4 style="display:inline-block;">{{discuss.title}}</h5>
+			  	<span class="discussion-author"> {{discuss.author}}</span>
+			  	<p>{{discuss.explanation}}</p>
+			  	<span class="comments pull-left">
+			  		<span class="glyphicon glyphicon-thumbs-up">{{discuss.likes.count}}</span>
+			  	<span class="glyphicon glyphicon-thumbs-down">{{discuss.dislikes.count}}</span>
+			  		<span class="glyphicon glyphicon-comment"></span> {{discuss.comments.count}}
+			  	</span>
+			  </button>
+			</div>
+		</div>
+	</div>	
+</div>
