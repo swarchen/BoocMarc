@@ -9,17 +9,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/featured-books', function(req, res, next){
+router.get('/api/v1/featured-books', function(req, res, next){
 	Book.find(function(err, books){
 		if(err){return next(err);}
 		res.json(books);
-	}).sort({readers:-1});
+	}).sort({readers:-1}).limit(8);
 });
 
-router.get('/discussed-books', function(req, res, next){
+router.get('/api/v1/discussed-books', function(req, res, next){
 	Book.find(function(err, books){
 		if(err){return next(err);}
 		res.json(books);
-	}).sort({discussions:-1});
+	}).sort({discussions:-1}).limit(8);
 })
 module.exports = router;

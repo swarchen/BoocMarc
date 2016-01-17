@@ -280,3 +280,12 @@ a {
 .book-author{
     color: black;
 }
+
+.book-title{
+    height: 40px;
+    overflow: hidden;
+}
+
+.book-image{
+    min-height: 200px;
+}

@@ -8,13 +8,13 @@
 	};
 
 	o.getFeatured = function(){
-		return $http.get('/featured-books').success(function(data){
+		return $http.get('/api/v1/featured-books').success(function(data){
 			angular.copy(data, o.featured);
 		})
 	}
 
 	o.getDiscussed = function(){
-		return $http.get('/discussed-books').success(function(data){
+		return $http.get('/api/v1/discussed-books').success(function(data){
 			angular.copy(data, o.discussed);
 		})
 	}
@@ -29,7 +29,7 @@
         	discussed_req = books.getDiscussed();
 	    $q.all([featured_req, discussed_req]).then(function(data) { 
 	        //here you'll get results for both the calls
-	        console.log(data);
+	        //console.log(data);
 	    });
 		$scope.featured = books.featured;
 		$scope.discussed = books.discussed;
