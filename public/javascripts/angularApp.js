@@ -1,21 +1,45 @@
 (function(){
 	var app = angular.module('boocmarc',['ngRoute']);
 	
-	app.controller('TrendBookCtrl', ['$scope', function($scope){
-		this.books = books; 
-	}]);
-	app.controller('DiscussBookCtrl', ['$scope', function($scope){
-		this.books = books; 
-	}]);
-	app.controller('BookCtrl', ['$scope','$routeParams', function($scope,$routeParams){
-		this.book = book;
-		this.discussions = discussions;
-		this.comments = comments;
-	}]);
+	app.factory('books',['$http', function($http){
+	var o = {
+		featured:[],
+		discussed:[]
+	};
+
+	o.getFeatured = function(){
+		return $http.get('/featured-books').success(function(data){
+			angular.copy(data, o.featured);
+		})
+	}
+
+	o.getDiscussed = function(){
+		return $http.get('/discussed-books').success(function(data){
+			angular.copy(data, o.discussed);
+		})
+	}
+
+
+
+	return o;
+}]);
+
+	app.controller('HomeCtrl',['$scope','$q','books', function($scope,$q,books){
+		var featured_req = books.getFeatured(),
+        	discussed_req = books.getDiscussed();
+	    $q.all([featured_req, discussed_req]).then(function(data) { 
+	        //here you'll get results for both the calls
+	        console.log(data);
+	    });
+		$scope.featured = books.featured;
+		$scope.discussed = books.discussed;
+
+	}])
 
 	app.config(function($routeProvider){
 	$routeProvider.when('/', {
-		templateUrl: 'partials/home.html'
+			templateUrl: 'partials/home.html',
+			controller:'HomeCtrl'
 		}).when('/book/:id', {
 			templateUrl: 'partials/book.html',
 			controller:'BookCtrl'

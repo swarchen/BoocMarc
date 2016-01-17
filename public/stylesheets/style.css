@@ -276,3 +276,7 @@ a {
 .book-detail{
 	padding: 10px;
 }
+
+.book-author{
+    color: black;
+}
