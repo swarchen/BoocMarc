@@ -23,25 +23,14 @@
 	<div class="featured-book">
 		<div class="row">
 			<h1>熱門書籍</h1>
-			<div class="col-md-3 col-sm-4 col-xs-12">
-				<a href="">
+			<div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="book in featured">
+				<a href="/book/{{book._id}}">
 					<div class="book-image">
-						<img src="http://im1.book.com.tw/image/getImage?i=http://www.books.com.tw/img/001/069/85/0010698529.jpg&v=565830d2&w=348&h=348">
+						<img src="{{book.imgUrl}}">
 					</div>
 					<div class="book-detail">
-						<div class="book-title">蝙蝠(奈斯博作品集10)</div>
-						<div class="book-author">尤．奈斯博</div>
-					</div>
-				</a>
-			</div>
-			<div class="col-md-3 col-sm-4 col-xs-12">
-				<a href="">
-					<div class="book-image">
-						<img src="http://im1.book.com.tw/image/getImage?i=http://www.books.com.tw/img/001/069/85/0010698529.jpg&v=565830d2&w=348&h=348">
-					</div>
-					<div class="book-detail">
-						<div class="book-title">蝙蝠(奈斯博作品集10)</div>
-						<div class="book-author">尤．奈斯博</div>
+						<div class="book-title">{{book.title}}</div>
+						<div class="book-author">{{book.author}}</div>
 					</div>
 				</a>
 			</div>
@@ -50,14 +39,14 @@
 	<div class="discussed-book">
 		<div class="row">
 			<h1>大家都在討論</h1>
-			<div class="col-md-3 col-sm-4 col-xs-12">
-				<a href="">
+			<div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="book in discussed">
+				<a href="/book/{{book._id}}">
 					<div class="book-image">
-						<img src="http://im1.book.com.tw/image/getImage?i=http://www.books.com.tw/img/001/069/85/0010698529.jpg&v=565830d2&w=348&h=348">
+						<img src="{{book.imgUrl}}">
 					</div>
 					<div class="book-detail">
-						<div class="book-title">蝙蝠(奈斯博作品集10)</div>
-						<div class="book-author">尤．奈斯博</div>
+						<div class="book-title">{{book.title}}</div>
+						<div class="book-author">{{book.author}}</div>
 					</div>
 				</a>
 			</div>
