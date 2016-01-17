@@ -10,12 +10,12 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-	
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular-route.js">
    </script>
-   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+   
    
 
 </head>
@@ -24,16 +24,27 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="brand" href="#">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="brand" href="/">
 	        <img alt="Brand" class="brand-logo" src="/imgs/logo.png">
 	      </a>
 	    </div>
-	    <div class="navbar-right">
+	   	<div class="navbar-right nav-web">
 	    	<ul>
 	    		<li><a class="btn-none" href="/login">登入</a></li>
 	    		<li><a class="btn-blue" href="/register">註冊</a></li>
 	    	</ul>
 	    </div>    
+	    <div class="collapse navbar-collapse " id="myNavbar">
+	    	<ul class="nav navbar-nav  navbar-right nav-mobile">
+	    		<li><a href="/login">登入</a></li>
+	    		<li><a href="/register">註冊</a></li>
+	    	</ul>
+	    </div>
 	  </div>
 	</nav>
 

@@ -139,7 +139,8 @@ a {
 
 /* Form wrapper styling */
 .form-wrapper {
-    width: 450px;
+    width: 70%;
+    max-width: 450px;
     padding: 15px;
     margin: 0 auto;
     background: #444;
@@ -151,7 +152,7 @@ a {
 /* Form text input */
 
 .form-wrapper input {
-    width: 330px;
+    width: 78%;
     height: 40px;
     padding: 10px 5px;
     float: left;    
@@ -194,7 +195,7 @@ a {
     padding: 0;
     cursor: pointer;
     height: 40px;
-    width: 90px;
+    width: 22%;
     font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
     color: #fff;
     text-transform: uppercase;
@@ -289,3 +290,47 @@ a {
 .book-image{
     min-height: 200px;
 }
+
+.search-web{
+    display: initial;
+}
+
+.search-mobile{
+    display:none;
+}
+
+.nav-web{
+    display: initial;
+}
+
+.nav-mobile{
+    display: none;
+}
+
+
+@media screen and (max-width: 480px) {
+    .search-web{
+        display: none;
+    }
+
+    .search-mobile{
+        display:initial;
+    }
+
+    .book-container{
+        width:90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .nav-web{
+        display: none;
+    }
+
+    .nav-mobile{
+        display: initial;
+    }
+}
+
+

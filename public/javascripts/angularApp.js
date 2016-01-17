@@ -19,10 +19,8 @@
 		})
 	}
 
-
-
 	return o;
-}]);
+	}]);
 
 	app.controller('HomeCtrl',['$scope','$q','books', function($scope,$q,books){
 		var featured_req = books.getFeatured(),
@@ -36,7 +34,7 @@
 
 	}])
 
-	app.config(function($routeProvider){
+	app.config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/', {
 			templateUrl: 'partials/home.html',
 			controller:'HomeCtrl'
@@ -47,7 +45,7 @@
 		.otherwise({
 			redirectTo: '/'
 		});
-		//$locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(true);
 	});
 
 
