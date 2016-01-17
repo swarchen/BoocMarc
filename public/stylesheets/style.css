@@ -13,76 +13,6 @@ a {
 .trendbook{
 	margin-top: 15px;
 }
-.Container {
-    display: flex;
-    overflow: hidden;
-    height: 100vh;
-    margin-top: -100px;
-    padding-top: 100px;
-    position: relative;
-    width: 100%;
-    backface-visibility: hidden;
-    will-change: overflow;
-}
-
-/*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
-WebKit inertia scrolling is being added here for any present/future devices that are able to make use of it.
-*/
-.Left,
-.Middle,
-.Right {
-    overflow: auto;
-    height: auto;
-    padding: .5rem;
-    width:50%;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-}
-/*Entirely optional – just wanted to remove the scrollbar on WebKit browsers as I find them ugly*/
-.Left::-webkit-scrollbar,
-.Middle::-webkit-scrollbar,
-.Right::-webkit-scrollbar {
-    display: none;
-}
-
-.book-image{
-	display: inline-block;
-	width: 30%;
-}
-.book-image img{
-	width: 100%;
-	min-width: 150px;
-}
-
-.book-info{
-	display: inline-block;
-	width: 68%;
-}
-
-.booklist{
-	margin-bottom:15px;
-	padding-bottom: 9px;
-	border-bottom: 1px #E8E8E8 solid;
-}
-
-@media screen and (max-width: 480px){
-	.book-image,.book-info{
-		display: block;
-		width: 100%;
-	}
-	.book-image img{
-		min-width: 180px;
-	}
-
-}
-
-.book-detail{
-	height: 100%;
-    left: 0px;
-    position: absolute;
-    border-right:solid #E8E8E8 1px;
-
-}
 
 .nav-own{
 	background-color: #161d20;
@@ -90,10 +20,6 @@ WebKit inertia scrolling is being added here for any present/future devices that
 
 .navtop{
 	border-width:0px;
-}
-
-html,body,.book-container,.book-detail,.content-view,.book-row,.side-info{
-	height: 100%
 }
 
 
@@ -178,4 +104,175 @@ html,body,.book-container,.book-detail,.content-view,.book-row,.side-info{
 
 .container-fluid ul li{
 	display:inline;
+}
+
+.banner{
+	background-image: url('/imgs/banner.png');
+	background-size: auto 400px;
+	height:400px;
+}
+
+.navbar{
+	margin-bottom: 0 !important;
+}
+
+.banner-container{
+	text-align: center;
+}
+.banner-intro{
+	color: white;
+	padding-top:50px;
+}
+
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
+.cf{
+    zoom:1;
+}  
+
+/* Form wrapper styling */
+.form-wrapper {
+    width: 450px;
+    padding: 15px;
+    margin: 0 auto;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* Form text input */
+
+.form-wrapper input {
+    width: 330px;
+    height: 40px;
+    padding: 10px 5px;
+    float: left;    
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: #eee;
+    border-radius: 3px 0 0 3px;      
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+   color: #999;
+   font-weight: normal;
+   font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}    
+
+/* Form submit button */
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 90px;
+    font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: #d83c3c;
+    border-radius: 0 3px 3px 0;      
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}   
+  
+.form-wrapper button:hover{		
+    background: #e54040;
+}	
+  
+.form-wrapper button:active,
+.form-wrapper button:focus{   
+    background: #c42f2f;
+	outline: 0;   
+}
+
+.form-wrapper button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #d83c3c transparent;
+    top: 12px;
+    left: -6px;
+}
+
+.form-wrapper button:hover:before{
+    border-right-color: #e54040;
+}
+
+.form-wrapper button:focus:before,
+.form-wrapper button:active:before{
+        border-right-color: #c42f2f;
+}      
+
+.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}    
+
+
+.browse-catalog-container{
+	font-weight: 900;
+}
+
+.h3-none{
+	color: white;
+}
+
+.h3-btn{
+	text-decoration: none;
+	color: #3f98ff;
+}
+
+.h3-btn:hover{
+	text-decoration: none;
+	
+}
+
+
+.book-container{
+	width:70%;
+	margin: 30px auto; 
+	text-align: center;
+}
+
+.book-container img{
+	max-width: 200px;
+}
+.featured-book{
+	margin-top:10px;
+}
+.discussed-book{
+	margin-top:10px;
+}
+
+.book-detail{
+	padding: 10px;
 }
