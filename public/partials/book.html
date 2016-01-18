@@ -1,32 +1,45 @@
-<div class="book-container" ng-controller="BookCtrl as Book">
-	<div class="row book-row">
-		<div class="col-md-3 col-lg-3 side-info" >
-			<div class="col-xs-12 col-md-12 book-detail">
-			    <a href="#" class="thumbnail">
-			      <img src="{{Book.book.imgUrl}}" >
-			    </a>
-			    <div class="caption">
-			        <h3>{{Book.book.name}}</h3>
-			        <p>{{Book.book.author}}</p>
-			        <p>{{Book.book.publisher}}</p>
-			        <p>{{Book.book.category}}</p>
-			    	<input type="number" ng-model="paging" placeholder="看到第幾頁了呢？">
-			    </div>
-			 </div>
+<div class="book-page row">
+	<div class="col-md-3 col-sm-4 col-xs-12 book-info">
+		<div class="book-info-image">
+			<a href="/book/{{book._id}}">
+				<img class="book-image-sm" ng-src="{{book.imgUrl}}">
+			</a>
 		</div>
-		<div class="col-md-8" >
-			<div class="list-group discussions" >
-			  <button class="list-group-item animate-show" ng-repeat="discuss in Book.discussions" ng-show="discuss.page.at < paging" ng-click="alert()">
-			  	<h4 style="display:inline-block;">{{discuss.title}}</h5>
-			  	<span class="discussion-author"> {{discuss.author}}</span>
-			  	<p>{{discuss.explanation}}</p>
-			  	<span class="comments pull-left">
-			  		<span class="glyphicon glyphicon-thumbs-up">{{discuss.likes.count}}</span>
-			  	<span class="glyphicon glyphicon-thumbs-down">{{discuss.dislikes.count}}</span>
-			  		<span class="glyphicon glyphicon-comment"></span> {{discuss.comments.count}}
-			  	</span>
-			  </button>
+		<div class="book-info-details">
+			<ul>
+				<li> </li>
+				<li>作者：{{book.author}}</li>
+				<li>類別：{{book.category}}</li>
+				<li>出版社：{{book.publisher}}</li>
+				<li>頁數：{{book.pages}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-sm-8 col-xs-12 discussions-content">
+		<div class="discussions-container row">
+			<!-- Numeric Textfield -->
+			  <div class="input-group">
+			      <input ng-model="page" min="1" step="1" type="number" class="form-control" placeholder="看到第幾頁了呢？" required>
+			      <span class="input-group-btn">
+			        <button ng-click="getDescussions(book._id,page)" class="btn btn-danger" type="button">Go!</button>
+			      </span>
+			  </div><!-- /input-group -->
+			<div class="list-group animate-hide" ng-hide="discussions">
+			  <a href="#" class="list-group-item">
+			  	<h4>一起來讀這本書吧！</h4>
+			  	<p>討論區只會顯示您閱讀到的頁數之前的討論串，完全不用擔心暴雷喔！</p>
+			  </a>
+			</div>
+
+			<div class="list-group">
+			  <a href="/discussion/{{discussion._id}}" class="list-group-item" ng-repeat="discussion in discussions">
+			  	<h4>{{discussion.title}}</h4>
+			  	<p>{{discussion.content}}</p>
+			  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>
+			  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments}}</span>
+			  	<p>By.{{discussion.author}}</p>
+			  </a>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
