@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 require('./models/Books');
+require('./models/Discussions');
 
 mongoose.connect('mongodb://localhost/boocmarc');
 
