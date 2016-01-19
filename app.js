@@ -5,11 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var configDB = require('./config/database.js');
 
 require('./models/Books');
 require('./models/Discussions');
 
-mongoose.connect('mongodb://localhost/boocmarc');
+
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
