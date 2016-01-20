@@ -1,10 +1,8 @@
-<div ng-show="error" class="alert alert-danger row">
-    <span>{{ error.message }}</span>
-  </div>
 
-
-<div class="login-block">
-    <h1>Login</h1>
+<div class="banner">
+  <div class="login-block">
+    <h1>Reader Login</h1>
+    <span ng-show="error" class="logreg-error">{{ error.message }}</span>
     <form ng-submit="logIn()" style="margin-top:30px;">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Username" id="username" ng-model="user.username"></input>
@@ -14,5 +12,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
-
+  </div>
 </div>
+

@@ -74,8 +74,8 @@ a {
 	padding:10px 15px;
 }
 
-.btn-blue{
-	background-color: #4a90e2;
+.btn-colorful{
+	background-color: #ff656c;
 	line-height: 16px;
     padding: 16px 20px;
     margin-left: 14px;
@@ -89,8 +89,8 @@ a {
     text-decoration: none;
 }
 
-.btn-blue:hover{
-	background-color:#75B4FF;
+.btn-colorful:hover{
+	background-color:#e15960;
 	color:white;
 	text-decoration: none;
 }
@@ -103,7 +103,7 @@ a {
 
 .btn-none:hover{
 	padding: 22px 0px;
-	color:#4a90e2;
+	color:#ff656c;
 	text-decoration: none;
 }
 
@@ -410,6 +410,9 @@ ul{
     border-radius: 5px;
     border-top: 5px solid #ff656c;
     margin: 0 auto;
+    position:relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .login-block h1 {
@@ -478,3 +481,7 @@ ul{
     background: #ff7b81;
 }
 
+.logreg-error{
+    color:red;
+    font-size: 12px;
+}
