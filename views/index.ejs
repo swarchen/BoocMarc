@@ -22,7 +22,7 @@
 </head>
 <body ng-app = "boocmarc">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top"  ng-controller="NavCtrl">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -36,14 +36,18 @@
 	    </div>
 	   	<div class="navbar-right nav-web">
 	    	<ul>
-	    		<li><a class="btn-none" href="/login">登入</a></li>
-	    		<li><a class="btn-blue" href="/register">註冊</a></li>
+	    		<li ng-show="isLoggedIn()" ng-cloak><a class="btn-none">{{ currentUser() }}</a></li>
+      			<li ng-show="isLoggedIn()"  ng-cloak><a href="" class="btn-colorful" ng-click="logOut()">Log Out</a></li>
+	    		<li><a class="btn-none" ng-hide="isLoggedIn()" href="/login">登入</a></li>
+	    		<li><a class="btn-colorful" ng-hide="isLoggedIn()" href="/register">註冊</a></li>
 	    	</ul>
 	    </div>    
 	    <div class="collapse navbar-collapse " id="myNavbar">
 	    	<ul class="nav navbar-nav  navbar-right nav-mobile">
-	    		<li><a href="/login">登入</a></li>
-	    		<li><a href="/register">註冊</a></li>
+	    		<li ng-show="isLoggedIn()" ng-cloak><a>{{ currentUser() }}</a></li>
+      			<li ng-show="isLoggedIn()" ng-cloak><a href="" ng-click="logOut()">Log Out</a></li>
+	    		<li ng-hide="isLoggedIn()"><a href="/login">登入</a></li>
+	    		<li ng-hide="isLoggedIn()"><a href="/register">註冊</a></li>
 	    	</ul>
 	    </div>
 	  </div>
