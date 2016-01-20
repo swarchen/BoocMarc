@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
+var passport = require('passport');
 
 require('./models/Books');
 require('./models/Discussions');
-
+require('./models/Users');
+require('./config/passport');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
@@ -30,6 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/users', users);
