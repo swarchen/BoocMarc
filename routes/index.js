@@ -10,6 +10,8 @@ var Book = mongoose.model('Book');
 var Discussion = mongoose.model('Discussion');
 var User = mongoose.model('User');
 
+var scrape = require('html-metadata');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -86,6 +88,13 @@ router.post('/login', function(req, res, next){
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
+
+router.post('/scrapebook',function(req, res, next){
+	scrape(req.body.url, function(error, metadata){
+		if(error){ return next(error); }
+		res.json(metadata);
+	});
 });
 
 

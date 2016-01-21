@@ -57,7 +57,7 @@
 
 		auth.register = function(user){
 			return $http.post('/register', user).success(function(data){
-				console.log(data);
+				//console.log(data);
 				auth.saveToken(data.token);
 			})
 		}
@@ -126,6 +126,18 @@
 		$scope.logOut = auth.logOut;
 	}])
 
+	app.controller('NewBookCtrl', ['$scope','$http',function($scope,$http){
+		
+		$scope.scrapebook = function(book){
+			console.log(book);
+			return $http.post('/scrapebook', book).error(function(error){
+				console.log(error);
+			}).success(function(data){
+				$scope.book = data.openGraph;
+			})
+		}
+	}])
+
 
 	app.config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/', {
@@ -140,6 +152,9 @@
 		}).when('/register', {
 			templateUrl: 'partials/register.html',
 			controller: 'AuthCtrl'
+		}).when('/newbook',{
+			templateUrl: 'partials/newbook.html',
+			controller:'NewBookCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'
