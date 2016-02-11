@@ -24,7 +24,7 @@
 			        <button ng-click="getDescussions(book._id,page)" class="btn btn-danger" type="button">Go!</button>
 			      </span>
 			  </div><!-- /input-group -->
-			<div class="list-group animate-hide" ng-hide="discussions">
+			<div class="list-group animate-hide" ng-init="show = 1" ng-show="show">
 			  <div class="list-group-item">
 			  	<h4>一起來讀這本書吧！</h4>
 			  	<p>討論區只會顯示您閱讀到的頁數之前的討論串，完全不用擔心暴雷喔！</p>
@@ -36,14 +36,37 @@
 			  	<p>{{discussion.content}}</p>
 			  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>
 			  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments.length}}</span>
-			  	<p>By.{{discussion.author}}</p>
+			  	<p>By.{{discussion.postedBy.username}}</p>
 			  </a>
 			</div>
-			<div class="list-group animate-hide" >
-			  <button class="list-group-item">
+			<div class="list-group" >
+			  <button ng-click="clicked=1" ng-init="click=0" class="list-group-item">
 			  	<h4><img src="../imgs/plus.png" style="width:20px">  發表新討論</h4>
 			  </button>
 			</div>
+		</div>
+	</div>
+	<div class="popup" ng-show="clicked">
+		<div class="post-form form-horizontal">
+			<form ng-submit="addDiscussion()">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">標題：</label>
+				    <div class="col-sm-10">
+				      <input ng-model="discussion.title" type="text" class="form-control" placeholder="標題">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">內容：</label>
+				    <div class="col-sm-10">
+				    	<textarea ng-model="discussion.content" class="form-control" rows="3"></textarea>
+				    </div>
+			    </div>	
+			    <div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button type="submit" class="btn btn-colorful">送出</button>
+				    </div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
