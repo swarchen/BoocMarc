@@ -10,6 +10,8 @@ var Book = mongoose.model('Book');
 var Discussion = mongoose.model('Discussion');
 var User = mongoose.model('User');
 
+var scrape = require('html-metadata');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -43,9 +45,11 @@ router.get('/api/v1/book/:id',function(req, res, next){
 });
 
 router.get('/api/v1/discussions/:id/page/:page',function(req, res, next){
-	Discussion.find({bookId:req.params.id}).
-	where('page').lt(req.params.page).
-	exec(function(err, discussions){
+	Discussion.find({bookId:req.params.id})
+	.where('page')
+	.lt(req.params.page)
+	.populate('postedBy comments.postedBy', 'username')
+	.exec(function(err, discussions){
 		if(err)
 			throw err;
 		//console.log('backend: '+book);
@@ -88,6 +92,20 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
+router.post('/scrapebook',function(req, res, next){
+	scrape(req.body.url, function(error, metadata){
+		if(error){ return next(error); }
+		res.json(metadata);
+	});
+});
+
+router.post('/discussion',function(req, res, next){
+	var discussion = new Discussion(req.body);
+	discussion.save(function(err, discussion){
+		if (err) {return next(err);}
+		res.json(discussion);
+	})
+})
 
 
 module.exports = router;

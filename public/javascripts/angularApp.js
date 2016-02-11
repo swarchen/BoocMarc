@@ -23,6 +23,29 @@
 	return o;
 	}]);
 
+	app.factory('discussions',['$http', 'auth', function($http, auth){
+		var o = {
+			discussions:[]
+		};
+
+		o.getByPage = function(id,page){
+			return $http.get('/api/v1/discussions/' + id + '/page/' + page).success(function(data){
+				//console.log(data);
+				angular.copy(data, o.discussions);
+			})
+		}
+
+		o.create = function(discussion){
+			//console.log('imokkk');
+			return $http.post('/discussion', discussion).success(function(data){
+				o.discussions.push(data);
+			})
+		}
+
+		return o;
+	}]);
+
+
 	app.factory('auth',['$http','$window', function($http, $window){
 		var auth = {};
 
@@ -50,14 +73,21 @@
 			if (auth.isLoggedIn()) {
 				var token = auth.getToken();
 				var payload = JSON.parse($window.atob(token.split('.')[1]));
-
 				return payload.username;
+			};
+		}
+
+		auth.currentUserId = function(){
+			if (auth.isLoggedIn()) {
+				var token = auth.getToken();
+				var payload = JSON.parse($window.atob(token.split('.')[1]));
+				return payload._id;
 			};
 		}
 
 		auth.register = function(user){
 			return $http.post('/register', user).success(function(data){
-				console.log(data);
+				//console.log(data);
 				auth.saveToken(data.token);
 			})
 		}
@@ -88,16 +118,31 @@
 
 	}]);
 
-	app.controller('BookCtrl',['$scope','books','$routeParams','$http', function($scope,books,$routeParams,$http){
+	app.controller('BookCtrl',['$scope','books','$routeParams','$http','discussions','auth', function($scope,books,$routeParams,$http,discussions,auth){
 		var id = $routeParams.id;
+		$scope.discussions = discussions.discussions;
 		$http.get('/api/v1/book/' + id).success(function(res){
 			$scope.book = res;
 		});
 		$scope.getDescussions = function(id,page){
-			return $http.get('/api/v1/discussions/' + id + '/page/' + page).success(function(data){
-				//console.log(data);
-				$scope.discussions = data;
-		})};
+			discussions.getByPage(id,page);
+			$scope.show = 0;
+		};
+		$scope.addDiscussion = function(){
+			if (!$scope.discussion.title || $scope.discussion.title === '' || !$scope.discussion.content || $scope.discussion.content === '') {return;}
+			discussions.create({
+				bookId:id.toString(),
+				title:$scope.discussion.title,
+				content:$scope.discussion.content,
+				page:$scope.page,
+				postedBy:auth.currentUserId()
+			});
+			//console.log('imok');
+			$scope.discussion.title = "";
+			$scope.discussion.content = "";
+			$scope.clicked=0;
+		}
+		
 	}]);
 
 	app.controller('AuthCtrl', ['$scope', '$location', 'auth', function($scope, $location, auth){
@@ -126,6 +171,18 @@
 		$scope.logOut = auth.logOut;
 	}])
 
+	app.controller('NewBookCtrl', ['$scope','$http',function($scope,$http){
+		
+		$scope.scrapebook = function(book){
+			console.log(book);
+			return $http.post('/scrapebook', book).error(function(error){
+				//console.log(error);
+			}).success(function(data){
+				$scope.book = data.openGraph;
+			})
+		}
+	}])
+
 
 	app.config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/', {
@@ -140,6 +197,9 @@
 		}).when('/register', {
 			templateUrl: 'partials/register.html',
 			controller: 'AuthCtrl'
+		}).when('/newbook',{
+			templateUrl: 'partials/newbook.html',
+			controller:'NewBookCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'

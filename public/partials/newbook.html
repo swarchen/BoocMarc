@@ -1,0 +1,12 @@
+<div>
+	<form ng-submit="scrapebook(book)" style="margin-top:30px;">
+		<div class="form-group">
+	        <input type="text" class="form-control"  ng-model="book.url"></input>
+	    </div>
+	    <button type="submit" class="btn btn-primary">search</button>
+    </form>
+    <p>網址: {{book.url}}</p>
+	<p>書名: {{book.title}}</p>
+	<p>說明: {{book.description}}</p>
+	<img ng-src="{{book.image.url}}" alt="">
+</div>
