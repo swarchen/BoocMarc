@@ -19,11 +19,12 @@
 		<div class="discussions-container row">
 			<!-- Numeric Textfield -->
 			  <div class="input-group">
-			      <input ng-model="page" min="1" step="1" type="number" class="form-control" placeholder="看到第幾頁了呢？" required>
+			      <input ng-model="page" value="0" min="1" step="1" type="number" class="form-control" placeholder="看到第幾頁了呢？" required>
 			      <span class="input-group-btn">
 			        <button ng-click="getDescussions(book._id,page)" class="btn btn-danger" type="button">Go!</button>
 			      </span>
 			  </div><!-- /input-group -->
+			  <p ng-show="errPage" class="logreg-error">{{errPage}}</p>
 			<div class="list-group animate-hide" ng-init="show = 1" ng-show="show">
 			  <div class="list-group-item">
 			  	<h4>一起來讀這本書吧！</h4>
@@ -48,17 +49,24 @@
 	</div>
 	<div class="popup" ng-show="clicked">
 		<div class="post-form form-horizontal">
+			<span ng-click="clicked=0" class="glyphicon glyphicon-remove" style="cursor:pointer"></span>
 			<form ng-submit="addDiscussion()">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">標題：</label>
 				    <div class="col-sm-10">
-				      <input ng-model="discussion.title" type="text" class="form-control" placeholder="標題">
+				      <input pattern=".{1,}"   required title="Title should be at least 1 letters" ng-model="discussion.title" type="text" class="form-control" placeholder="標題">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">頁數：</label>
+				    <div class="col-sm-10">
+				      <input pattern=".{1,}"   required title="Page should be at least 1 letters" ng-model="discussion.page" type="number" class="form-control" placeholder="頁數">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="col-sm-2 control-label">內容：</label>
 				    <div class="col-sm-10">
-				    	<textarea ng-model="discussion.content" class="form-control" rows="3"></textarea>
+				    	<textarea pattern=".{1,}"   required title="Content should be at least 1 letters" ng-model="discussion.content" class="form-control" rows="3"></textarea>
 				    </div>
 			    </div>	
 			    <div class="form-group">
@@ -66,6 +74,7 @@
 				      <button type="submit" class="btn btn-colorful">送出</button>
 				    </div>
 				</div>
+				<span ng-show="error" class="logreg-error">{{ error }}</span>
 			</form>
 		</div>
 	</div>

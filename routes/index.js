@@ -59,14 +59,16 @@ router.get('/api/v1/discussions/:id/page/:page',function(req, res, next){
 })
 
 router.post('/register', function(req, res, next){
-  if(!req.body.username || !req.body.password){
+  if(!req.body.username || !req.body.password || !req.body.email){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
-
+  if(req.body.password !== req.body.passwordchk){
+    return res.status(400).json({message: 'Please make sure you have entered right password!'});
+  }
   var user = new User();
 
   user.username = req.body.username;
-
+  user.email = req.body.email;
   user.setPassword(req.body.password)
 
   user.save(function (err){
