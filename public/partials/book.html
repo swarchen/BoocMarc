@@ -25,12 +25,11 @@
 			      </span>
 			  </div><!-- /input-group -->
 			<div class="list-group animate-hide" ng-hide="discussions">
-			  <a href="#" class="list-group-item">
+			  <div class="list-group-item">
 			  	<h4>一起來讀這本書吧！</h4>
 			  	<p>討論區只會顯示您閱讀到的頁數之前的討論串，完全不用擔心暴雷喔！</p>
-			  </a>
+			  </div>
 			</div>
-
 			<div class="list-group">
 			  <a href="/discussion/{{discussion._id}}" class="list-group-item" ng-repeat="discussion in discussions">
 			  	<h4>{{discussion.title}}</h4>
@@ -39,6 +38,11 @@
 			  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments.length}}</span>
 			  	<p>By.{{discussion.author}}</p>
 			  </a>
+			</div>
+			<div class="list-group animate-hide" >
+			  <button class="list-group-item">
+			  	<h4><img src="../imgs/plus.png" style="width:20px">  發表新討論</h4>
+			  </button>
 			</div>
 		</div>
 	</div>
