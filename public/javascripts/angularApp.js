@@ -125,16 +125,28 @@
 			$scope.book = res;
 		});
 		$scope.getDescussions = function(id,page){
+			if(page === undefined || page <=0){
+				$scope.errPage = "You should enter right page";
+				return;
+			}
 			discussions.getByPage(id,page);
 			$scope.show = 0;
+			$scope.errPage = 0;
 		};
 		$scope.addDiscussion = function(){
-			if (!$scope.discussion.title || $scope.discussion.title === '' || !$scope.discussion.content || $scope.discussion.content === '') {return;}
+			if (!$scope.discussion.title || $scope.discussion.title === '' || !$scope.discussion.content || $scope.discussion.content === '') {
+				$scope.error = "Please make sure you have fill all the area";
+				return;
+			}
+			if (!auth.isLoggedIn()){
+				$scope.error = "Please make sure you have login to post a discussion";
+				return;
+			} 
 			discussions.create({
 				bookId:id.toString(),
 				title:$scope.discussion.title,
 				content:$scope.discussion.content,
-				page:$scope.page,
+				page:$scope.discussion.page,
 				postedBy:auth.currentUserId()
 			});
 			//console.log('imok');
@@ -169,6 +181,11 @@
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.currentUser = auth.currentUser;
 		$scope.logOut = auth.logOut;
+		$(document).on('click','.navbar-collapse.in',function(e) {
+		    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+		        $(this).collapse('hide');
+		    }
+		});
 	}])
 
 	app.controller('NewBookCtrl', ['$scope','$http',function($scope,$http){

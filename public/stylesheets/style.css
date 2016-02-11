@@ -411,24 +411,36 @@ ul{
 }
 
 .login-block input#username {
-    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+    background: #fff url('../imgs/user.png') 20px top no-repeat;
     background-size: 16px 80px;
 }
 
 .login-block input#username:focus {
-    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background: #fff url('../imgs/user.png') 20px bottom no-repeat;
     background-size: 16px 80px;
 }
 
-.login-block input#password {
-    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+.login-block input#email {
+    background: #fff url('../imgs/email.png') 20px top no-repeat;
     background-size: 16px 80px;
 }
 
-.login-block input#password:focus {
-    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+.login-block input#email:focus {
+    background: #fff url('../imgs/email.png') 20px bottom no-repeat;
     background-size: 16px 80px;
 }
+
+.login-block input#password,input#passwordchk{
+    background: #fff url('../imgs/pass.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password:focus,input#passwordchk:focus{
+    background: #fff url('../imgs/pass.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+
 
 .login-block input:active, .login-block input:focus {
     border: 1px solid #ff656c;
