@@ -25,13 +25,21 @@
 
 	app.factory('discussions',['$http', 'auth', function($http, auth){
 		var o = {
-			discussions:[]
+			discussions:[],
+			discussion:{}
 		};
 
 		o.getByPage = function(id,page){
 			return $http.get('/api/v1/discussions/' + id + '/page/' + page).success(function(data){
 				//console.log(data);
 				angular.copy(data, o.discussions);
+			})
+		}
+
+		o.getOne = function(id){
+			return $http.get('/api/v1/discussion/' + id).success(function(data){
+				angular.copy(data, o.discussion);
+				//console.log(o.discussion);
 			})
 		}
 
@@ -121,9 +129,11 @@
 	app.controller('BookCtrl',['$scope','books','$routeParams','$http','discussions','auth', function($scope,books,$routeParams,$http,discussions,auth){
 		var id = $routeParams.id;
 		$scope.discussions = discussions.discussions;
+		$scope.theDiscussion = discussions.discussion;
 		$http.get('/api/v1/book/' + id).success(function(res){
 			$scope.book = res;
 		});
+
 		$scope.getDescussions = function(id,page){
 			if(page === undefined || page <=0){
 				$scope.errPage = "You should enter right page";
@@ -133,6 +143,13 @@
 			$scope.show = 0;
 			$scope.errPage = 0;
 		};
+
+		$scope.getDescussion = function(id){
+			$scope.showDis = 1;
+			discussions.getOne(id);
+			console.log(discussions.discussion);
+		};
+
 		$scope.addDiscussion = function(){
 			if (!$scope.discussion.title || $scope.discussion.title === '' || !$scope.discussion.content || $scope.discussion.content === '') {
 				$scope.error = "Please make sure you have fill all the area";

@@ -472,21 +472,121 @@ ul{
 }
 
 .popup{
+    height: auto;
+    left: 0;
+    min-height: 100%;
     position: absolute;
-    padding:150px 0 0 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.47);
-    z-index: 100;
+    right: 0;
+    top: 0;
+    z-index: 10000;
+    background-color: rgba(0,0,0,.5);
 }
 
 .post-form{
     width: 50%;
     min-width: 300px;
-    margin: 0 auto;
+    margin: 150px auto;
     padding: 30px;
     background-color: whitesmoke;
     border-radius: 5px;
+}
+
+.dispop{
+    height: auto;
+    left: 0;
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10000;
+    background-color: rgba(0,0,0,.5);
+
+}
+.dis-container{
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 2px 26px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .1);
+    font-size: 18px;
+    margin: 36px auto;
+    max-width: 1200px;
+    min-width: 900px;
+    width: 90%;
+}
+.content-container{
+    background-color: #fff;
+    background-size: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 7px 7px 0 0;
+    padding-bottom: 37%;
+}
+.info-container{
+    border-radius: 7px 7px 0 0;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 40px 0;
+    position: relative;
+}
+
+.dis-title{
+    font-family: 'Georgia', serif;
+    font-size: 40px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 200;
+    line-height: 48px;
+    margin: 0 auto 12px;
+    position: relative;
+    width: 700px;
+    word-wrap: break-word;
+}
+.title-sub{
+    color: #141823;
+    font-family: helvetica, arial, sans-serif;
+    margin: 0 auto;
+    width: 700px;
+}
+.title-sub-content{
+    color: #9197a3;
+    float: left;
+    font-size: 12px;
+    margin: 4px 0 0 4px;
+    text-transform: uppercase;
+}
+.title-sub-content-user{
+    color: #9197a3;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dot{
+    padding: 0 6px;
+}
+
+.date{
+    color: #9197a3;
+
+}
+
+.contents{
+    box-sizing: border-box;
+    margin: 0px 10%;
+    background-color: #fff;
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 28px;
+    overflow: hidden;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.react-container{
+    color: #141823;
+    font-family: helvetica, arial, sans-serif;
+    background-color: whitesmoke;
+}
+
+.react{
+    margin: 0 auto;
+    width: 700px;
 }
 
 
