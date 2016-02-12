@@ -50,6 +50,12 @@
 			})
 		}
 
+		o.addComment = function(discussion,comment){
+			return $http.put('/comment/' + discussion._id, comment).success(function(data){
+				console.log(data);
+			})
+		}
+
 		return o;
 	}]);
 
@@ -147,7 +153,7 @@
 		$scope.getDescussion = function(id){
 			$scope.showDis = 1;
 			discussions.getOne(id);
-			console.log(discussions.discussion);
+			//console.log(discussions.discussion);
 		};
 
 		$scope.addDiscussion = function(){
@@ -170,6 +176,15 @@
 			$scope.discussion.title = "";
 			$scope.discussion.content = "";
 			$scope.clicked=0;
+		}
+
+		$scope.addComment = function(discussion){
+			//console.log(id);
+			discussions.addComment(discussion,{
+				text:$scope.comment.text,
+				postedBy:auth.currentUserId()
+			});
+			$scope.comment.text = "";
 		}
 		
 	}]);
@@ -208,7 +223,7 @@
 	app.controller('NewBookCtrl', ['$scope','$http',function($scope,$http){
 		
 		$scope.scrapebook = function(book){
-			console.log(book);
+			//console.log(book);
 			return $http.post('/scrapebook', book).error(function(error){
 				//console.log(error);
 			}).success(function(data){

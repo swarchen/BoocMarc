@@ -121,5 +121,25 @@ router.post('/discussion',function(req, res, next){
 	})
 })
 
+router.param('discussion', function(req, res, next, id){
+	var query = Discussion.findById(id);
+	query.exec(function (err, discussion){
+		if (err) {return next(err);}
+		if (!discussion) {return next(new Error('can\'t ifnd discussion')); }
+
+		req.discussion = discussion;
+		return next();
+	})
+})
+
+router.put('/comment/:discussion', function(req, res, next){
+	var comment = req.body;
+	req.discussion.addComment(comment,function(err, data){
+		if (err) {return next(err);}
+		res.json(data);
+	})
+})
+
+
 
 module.exports = router;

@@ -105,6 +105,24 @@
 					<span class="badge glyphicon glyphicon-arrow-up">{{theDiscussion.upvotes}}</span>
 				  	<span class="badge glyphicon glyphicon-comment">{{theDiscussion.comments.length}}</span>
 				</div>
+				<div class="comment">
+					<div class="comments">
+						<div class="comment-content"  ng-repeat="comment in theDiscussion.comments">
+							<p>{{comment.text}} <span>{{comment.postedBy.username}}</span></p>
+						</div>
+					</div>
+					<form ng-submit="addComment(theDiscussion)">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">標題：</label>
+						    <div class="col-sm-8">
+						      <input pattern=".{1,}"   required title="Title should be at least 1 letters" ng-model="comment.text" type="text" class="form-control" placeholder="標題">
+						    </div>
+						    <div class="col-sm-2">
+						      <button type="submit" class="btn btn-colorful">送出</button>
+						    </div>
+						</div>
+					</form>
+				</div>
 			</div>
 			
 		</div>

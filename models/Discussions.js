@@ -22,5 +22,9 @@ var DiscussionSchema = new mongoose.Schema({
 	
 });
 
+DiscussionSchema.methods.addComment = function(comment,cb){
+    this.comments.push(comment);
+    this.save(cb);
+};
 
 mongoose.model('Discussion', DiscussionSchema);
