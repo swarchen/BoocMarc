@@ -58,6 +58,18 @@ router.get('/api/v1/discussions/:id/page/:page',function(req, res, next){
 	});
 })
 
+router.get('/api/v1/discussion/:id',function(req, res, next){
+	Discussion.findOne({_id:req.params.id})
+	.populate('postedBy comments.postedBy', 'username')
+	.exec(function(err, discussion){
+		if(err)
+			throw err;
+		//console.log('backend: '+book);
+		//console.log(discussions);
+		res.json(discussion);
+	});
+})
+
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password || !req.body.email){
     return res.status(400).json({message: 'Please fill out all fields'});

@@ -32,13 +32,13 @@
 			  </div>
 			</div>
 			<div class="list-group">
-			  <a href="?discussion={{discussion._id}}" class="list-group-item" ng-repeat="discussion in discussions">
+			  <button ng-click="getDescussion(discussion._id)" class="list-group-item" ng-repeat="discussion in discussions">
 			  	<h4>{{discussion.title}}</h4>
 			  	<p>{{discussion.content}}</p>
 			  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>
 			  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments.length}}</span>
 			  	<p>By.{{discussion.postedBy.username}}</p>
-			  </a>
+			  </button>
 			</div>
 			<div class="list-group" >
 			  <button ng-click="clicked=1" ng-init="click=0" class="list-group-item">
@@ -77,5 +77,37 @@
 				<span ng-show="error" class="logreg-error">{{ error }}</span>
 			</form>
 		</div>
+	</div>
+	<div class="dispop" ng-show="showDis">
+		<div class="dis-container">
+			<div class="content-container">
+				<span ng-click="showDis=0" class="glyphicon glyphicon-remove" style="cursor:pointer; margin:10px 0 0 10px"></span>
+				<div class="info-container">
+					<div class="dis-title" >
+						{{theDiscussion.title}}
+					</div>
+					<div class="title-sub">
+						<div class="title-sub-content">
+							<a class="title-sub-content-user" target="_blank" href="/profile/{{theDiscussion.postedBy.username}}">{{theDiscussion.postedBy.username}}</a>
+							<span class="dot">·</span>
+							<span class="date">{{theDiscussion.create_date | date:'medium'}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="contents">
+					<p>
+						{{theDiscussion.content}}
+					</p>
+				</div>
+			</div>
+			<div class="react-container">
+				<div class="react">
+					<span class="badge glyphicon glyphicon-arrow-up">{{theDiscussion.upvotes}}</span>
+				  	<span class="badge glyphicon glyphicon-comment">{{theDiscussion.comments.length}}</span>
+				</div>
+			</div>
+			
+		</div>
+			
 	</div>
 </div>

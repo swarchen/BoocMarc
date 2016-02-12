@@ -24,4 +24,3 @@ var DiscussionSchema = new mongoose.Schema({
 
 
 mongoose.model('Discussion', DiscussionSchema);
-
