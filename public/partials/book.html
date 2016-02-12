@@ -32,7 +32,7 @@
 			  </div>
 			</div>
 			<div class="list-group">
-			  <a href="/discussion/{{discussion._id}}" class="list-group-item" ng-repeat="discussion in discussions">
+			  <a href="?discussion={{discussion._id}}" class="list-group-item" ng-repeat="discussion in discussions">
 			  	<h4>{{discussion.title}}</h4>
 			  	<p>{{discussion.content}}</p>
 			  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>

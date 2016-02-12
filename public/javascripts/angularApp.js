@@ -133,6 +133,7 @@
 			$scope.show = 0;
 			$scope.errPage = 0;
 		};
+
 		$scope.addDiscussion = function(){
 			if (!$scope.discussion.title || $scope.discussion.title === '' || !$scope.discussion.content || $scope.discussion.content === '') {
 				$scope.error = "Please make sure you have fill all the area";
