@@ -50,6 +50,12 @@
 			})
 		}
 
+		o.addComment = function(discussion, comment){
+			return $http.put('/comment/' + discussion._id, comment).success(function(data){
+				o.discussion.comments.push(comment);
+			})
+		}
+
 		return o;
 	}]);
 
@@ -130,6 +136,7 @@
 		var id = $routeParams.id;
 		$scope.discussions = discussions.discussions;
 		$scope.theDiscussion = discussions.discussion;
+		$scope.currentUser = auth.currentUser;
 		$http.get('/api/v1/book/' + id).success(function(res){
 			$scope.book = res;
 		});
@@ -147,7 +154,7 @@
 		$scope.getDescussion = function(id){
 			$scope.showDis = 1;
 			discussions.getOne(id);
-			console.log(discussions.discussion);
+			//console.log(discussions.discussion);
 		};
 
 		$scope.addDiscussion = function(){
@@ -170,6 +177,19 @@
 			$scope.discussion.title = "";
 			$scope.discussion.content = "";
 			$scope.clicked=0;
+		}
+
+		$scope.addComment = function(discussion){
+			//console.log(id);
+			if (!auth.isLoggedIn()){
+				$scope.error = "Please make sure you have login to post a comment";
+				return;
+			} 
+			discussions.addComment(discussion, {
+				text:$scope.comment.text,
+				postedBy:auth.currentUserId()
+			});
+			$scope.comment.text = "";
 		}
 		
 	}]);
@@ -208,7 +228,7 @@
 	app.controller('NewBookCtrl', ['$scope','$http',function($scope,$http){
 		
 		$scope.scrapebook = function(book){
-			console.log(book);
+			//console.log(book);
 			return $http.post('/scrapebook', book).error(function(error){
 				//console.log(error);
 			}).success(function(data){
@@ -217,6 +237,19 @@
 		}
 	}])
 
+	app.directive('ng-enter', function () {
+	    return function (scope, element, attrs) {
+	        element.bind("keydown keypress", function (event) {
+	            if(event.which === 13) {
+	                scope.$apply(function (){
+	                    scope.$eval(attrs.ng-enter);
+	                });
+
+	                event.preventDefault();
+	            }
+	        });
+	    };
+	});
 
 	app.config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/', {
