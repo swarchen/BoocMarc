@@ -27,4 +27,12 @@ DiscussionSchema.methods.addComment = function(comment,cb){
     this.save(cb);
 };
 
+DiscussionSchema.methods.upVote = function(cb){
+    this.upvotes += 1;
+    this.save(cb);
+};
+
+
+
+
 mongoose.model('Discussion', DiscussionSchema);

@@ -582,11 +582,24 @@ ul{
     color: #141823;
     font-family: helvetica, arial, sans-serif;
     background-color: whitesmoke;
+    padding-bottom: 25px;
+    border-radius: 0 0 7px 7px;
 }
 
 .react{
     margin: 0 auto;
-    width: 700px;
+    width: 65%;
+}
+
+.comment-content{
+    width: 65%;
+    margin:0 auto;
+}
+
+.comment-form{
+    margin:0 auto;
+    display: inline-block;
+    height: 35px;
 }
 
 

@@ -50,9 +50,9 @@
 			})
 		}
 
-		o.addComment = function(discussion,comment){
+		o.addComment = function(discussion, comment){
 			return $http.put('/comment/' + discussion._id, comment).success(function(data){
-				console.log(data);
+				o.discussion.comments.push(comment);
 			})
 		}
 
@@ -136,6 +136,7 @@
 		var id = $routeParams.id;
 		$scope.discussions = discussions.discussions;
 		$scope.theDiscussion = discussions.discussion;
+		$scope.currentUser = auth.currentUser;
 		$http.get('/api/v1/book/' + id).success(function(res){
 			$scope.book = res;
 		});
@@ -180,7 +181,11 @@
 
 		$scope.addComment = function(discussion){
 			//console.log(id);
-			discussions.addComment(discussion,{
+			if (!auth.isLoggedIn()){
+				$scope.error = "Please make sure you have login to post a comment";
+				return;
+			} 
+			discussions.addComment(discussion, {
 				text:$scope.comment.text,
 				postedBy:auth.currentUserId()
 			});
@@ -232,6 +237,19 @@
 		}
 	}])
 
+	app.directive('ng-enter', function () {
+	    return function (scope, element, attrs) {
+	        element.bind("keydown keypress", function (event) {
+	            if(event.which === 13) {
+	                scope.$apply(function (){
+	                    scope.$eval(attrs.ng-enter);
+	                });
+
+	                event.preventDefault();
+	            }
+	        });
+	    };
+	});
 
 	app.config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/', {

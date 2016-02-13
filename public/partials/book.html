@@ -107,21 +107,23 @@
 				</div>
 				<div class="comment">
 					<div class="comments">
-						<div class="comment-content"  ng-repeat="comment in theDiscussion.comments">
-							<p>{{comment.text}} <span>{{comment.postedBy.username}}</span></p>
+						<div class="comment-content" >
+							<ul class="list-group">
+							  <li class="list-group-item" ng-repeat="comment in theDiscussion.comments">
+							  	<a href="/profile/{{comment.postedBy.username}}">{{comment.postedBy.username}}</a>
+							  	{{comment.text}}
+							  </li>
+							  <li class="list-group-item">{{ currentUser() }}
+							  	<form ng-submit="addComment(theDiscussion)" class="comment-form">
+									<div class="form-group">
+						      			<input pattern=".{1,}"   required title="Title should be at least 1 letters" ng-model="comment.text" type="text" class="form-control" placeholder="標題" ng-enter="addComment(theDiscussion)">
+									</div>
+								</form>
+							  </li>
+							  <span ng-show="error" class="logreg-error">{{ error }}</span>
+							</ul>
 						</div>
 					</div>
-					<form ng-submit="addComment(theDiscussion)">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">標題：</label>
-						    <div class="col-sm-8">
-						      <input pattern=".{1,}"   required title="Title should be at least 1 letters" ng-model="comment.text" type="text" class="form-control" placeholder="標題">
-						    </div>
-						    <div class="col-sm-2">
-						      <button type="submit" class="btn btn-colorful">送出</button>
-						    </div>
-						</div>
-					</form>
 				</div>
 			</div>
 			
