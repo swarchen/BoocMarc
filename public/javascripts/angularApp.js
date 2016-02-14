@@ -43,15 +43,15 @@
 			})
 		}
 
-		o.create = function(discussion){
+		o.create = function(discussion, bookId){
 			//console.log('imokkk');
-			return $http.post('/discussion', discussion).success(function(data){
+			return $http.post('/discussion/' + bookId, discussion).success(function(data){
 				o.discussions.push(data);
 			})
 		}
 
 		o.addComment = function(discussion, comment){
-			return $http.put('/comment/' + discussion._id, comment).success(function(data){
+			return $http.put('/comment/'+ discussion._id, comment).success(function(data){
 				o.discussion.comments.push(comment);
 			})
 		}
@@ -137,8 +137,11 @@
 		$scope.discussions = discussions.discussions;
 		$scope.theDiscussion = discussions.discussion;
 		$scope.currentUser = auth.currentUser;
+
 		$http.get('/api/v1/book/' + id).success(function(res){
 			$scope.book = res;
+			angular.copy([], discussions.discussions);
+			angular.copy({}, discussions.discussion);
 		});
 
 		$scope.getDescussions = function(id,page){
@@ -147,6 +150,7 @@
 				return;
 			}
 			discussions.getByPage(id,page);
+			//console.log(discussions.discussions);
 			$scope.show = 0;
 			$scope.errPage = 0;
 		};
@@ -166,13 +170,14 @@
 				$scope.error = "Please make sure you have login to post a discussion";
 				return;
 			} 
+			var bookId = $scope.book._id;
 			discussions.create({
 				bookId:id.toString(),
 				title:$scope.discussion.title,
 				content:$scope.discussion.content,
 				page:$scope.discussion.page,
 				postedBy:auth.currentUserId()
-			});
+			},bookId);
 			//console.log('imok');
 			$scope.discussion.title = "";
 			$scope.discussion.content = "";

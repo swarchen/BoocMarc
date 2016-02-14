@@ -12,5 +12,14 @@ var BookSchema = new mongoose.Schema({
 	
 });
 
+BookSchema.methods.addDiscussion = function(cb){
+    this.discussions += 1;
+    this.save(cb);
+};
+
+BookSchema.methods.addReader = function(cb){
+    this.readers += 1;
+    this.save(cb);
+};
 
 mongoose.model('Book', BookSchema);
