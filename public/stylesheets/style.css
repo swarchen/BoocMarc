@@ -508,7 +508,6 @@ ul{
     font-size: 18px;
     margin: 36px auto;
     max-width: 1200px;
-    min-width: 900px;
     width: 90%;
 }
 .content-container{
@@ -516,7 +515,6 @@ ul{
     background-size: cover;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     border-radius: 7px 7px 0 0;
-    padding-bottom: 37%;
 }
 .info-container{
     border-radius: 7px 7px 0 0;
