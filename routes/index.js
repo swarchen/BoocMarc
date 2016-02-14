@@ -113,8 +113,9 @@ router.post('/scrapebook',function(req, res, next){
 	});
 });
 
-router.post('/discussion',function(req, res, next){
+router.post('/discussion/:book',function(req, res, next){
 	var discussion = new Discussion(req.body);
+	req.book.addDiscussion();
 	discussion.save(function(err, discussion){
 		if (err) {return next(err);}
 		res.json(discussion);
@@ -131,6 +132,18 @@ router.param('discussion', function(req, res, next, id){
 		return next();
 	})
 })
+
+router.param('book', function(req, res, next, id){
+	var query = Book.findById(id);
+	query.exec(function (err, book){
+		if (err) {return next(err);}
+		if (!book) {return next(new Error('can\'t ifnd book')); }
+
+		req.book = book;
+		return next();
+	})
+})
+
 
 router.put('/comment/:discussion', function(req, res, next){
 	var comment = req.body;
