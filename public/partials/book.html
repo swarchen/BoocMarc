@@ -33,11 +33,22 @@
 			</div>
 			<div class="list-group">
 			  <button ng-click="getDescussion(discussion._id)" class="list-group-item" ng-repeat="discussion in discussions">
-			  	<h4>{{discussion.title}}</h4>
-			  	<p>{{discussion.content}}</p>
-			  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>
-			  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments.length}}</span>
-			  	<p>By.{{discussion.postedBy.username}}</p>
+			  	<div class="row row-eq-height vertical-align">
+			  		<div class="col-xs-1">
+			  			<div class="page-number-container text-center">
+			  				{{discussion.page}}
+					  	</div>
+			  		</div>
+			  		<div class="col-xs-11">
+			  			<h4>{{discussion.title}}</h4>
+					  	<p>{{discussion.content}}</p>
+					  	<span class="badge glyphicon glyphicon-arrow-up">{{discussion.upvotes}}</span>
+					  	<span class="badge glyphicon glyphicon-comment">{{discussion.comments.length}}</span>
+					  	<p>By.{{discussion.postedBy.username}}</p>
+			  		</div>
+			  	</div>
+			  	
+			  	
 			  </button>
 			</div>
 			<div class="list-group" >
