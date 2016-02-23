@@ -285,6 +285,8 @@ a {
 
 .book-author{
     color: black;
+    height: 40px;
+    overflow: hidden;
 }
 
 .book-title{
@@ -294,6 +296,7 @@ a {
 
 .book-image{
     min-height: 200px;
+    max-height: 200px;
 }
 
 .book-image-sm{

@@ -4,7 +4,8 @@
 	app.factory('books',['$http', function($http){
 		var o = {
 			featured:[],
-			discussed:[]
+			discussed:[],
+			searched:[]
 		};
 
 		o.getFeatured = function(){
@@ -16,6 +17,16 @@
 		o.getDiscussed = function(){
 			return $http.get('/api/v1/discussed-books').success(function(data){
 				angular.copy(data, o.discussed);
+			})
+		}
+
+		o.search = function(input){
+			return $http.get('/api/v1/search/' + input).success(function(data){
+				var books = [];
+				for (book in data){
+					books.push(data[book]._source)
+				}
+				angular.copy(books, o.searched);
 			})
 		}
 
@@ -129,6 +140,12 @@
 	    });
 		$scope.featured = books.featured;
 		$scope.discussed = books.discussed;
+		$scope.searched = books.searched; 
+		$scope.search = function(input){
+			books.search(input);
+			$scope.searchInput = "";
+			$scope.searchend =1;
+		}
 
 	}]);
 

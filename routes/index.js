@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var elasticsearch = require('elasticsearch');
+var client = new elasticsearch.Client({
+	host: 'localhost:9200',
+	log: 'trace'
+});
 
 var passport = require('passport');
 var jwt = require('express-jwt');
@@ -18,7 +23,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
+router.get('/api/v1/search/:input', function(req, res, next){
+	//console.log(req.params.input)
+	client.search({q: "title:"+ req.params.input +"OR author:"+req.params.input, size:8})
+	.then(function (body) {
+			var hits = body.hits.hits;
+			res.json(hits);
+		}, function (error) {
+			console.trace(error.message);
+		});
+})
 
 
 router.get('/api/v1/featured-books', function(req, res, next){
