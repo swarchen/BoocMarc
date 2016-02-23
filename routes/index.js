@@ -28,7 +28,7 @@ router.get('/api/v1/search/:input', function(req, res, next){
 	client.search({q: "title:"+ req.params.input +"OR author:"+req.params.input, size:8})
 	.then(function (body) {
 			var hits = body.hits.hits;
-			console.log(hits);
+			//console.log(hits);
 			res.json(hits);
 		}, function (error) {
 			console.trace(error.message);
