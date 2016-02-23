@@ -4,9 +4,9 @@
 			<h1 class="banner-intro">找到和你一樣愛閱讀的朋友。</h1>
 			<div class="search-container">
 				<div class="search-wrapper">
-					<form class="form-wrapper cf" action method="get" class="search-form">
-						<input type="text" placeholder="正在看什麼書呢？（搜尋尚未開放）">
-						<button type="submit">
+					<form class="form-wrapper cf"  class="search-form">
+						<input ng-model="searchInput" type="text" placeholder="正在看什麼書呢？(輸入書名/作者開始搜尋)">
+						<button type="button" ng-click="search(searchInput)">
 							<span class="search-web">Search</span>
 							<span class="search-mobile"><span class="glyphicon glyphicon-search"></span></span>
 						</button>
@@ -23,6 +23,22 @@
 	</div>
 </div>
 <div class="book-container">
+	<div class="searched-book" ng-show="searchend">
+		<div class="row">
+			<h1>搜尋結果</h1>
+			<div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="book in searched">
+				<a href="/book/{{book._id}}">
+					<div class="book-image">
+						<img class="book-image" ng-src="{{book.imgUrl}}">
+					</div>
+					<div class="book-detail">
+						<div class="book-title">{{book.title}}</div>
+						<div class="book-author">{{book.author}}</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 	<div class="featured-book">
 		<div class="row">
 			<h1>熱門書籍</h1>
