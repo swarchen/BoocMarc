@@ -24,6 +24,7 @@
 			return $http.get('/api/v1/search/' + input).success(function(data){
 				var books = [];
 				for (book in data){
+					data[book]._source._id = data[book]._id;
 					books.push(data[book]._source)
 				}
 				angular.copy(books, o.searched);
